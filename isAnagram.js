@@ -26,27 +26,21 @@ const isAnagram = function (s, t) {
     }
     const countS = {};
     const countT = {};
+    // optimized to one loop since we know s and t are the same length. we can count for both at the same time.
     for (let i = 0; i < s.length; i++) {
-        if (!(s[i] in countS)) {
-            countS[s[i]] = 1;
-        } else {
-            countS[s[i]] = 1 + countS[s[i]];
-        }
+        countS[s[i]] = s[i] in countS ? countS[s[i]]++ : 1;
+        countT[t[i]] = t[i] in countT ? countT[t[i]]++ : 1;
     }
-    for (let i = 0; i < t.length; i++) {
-        if (!(t[i] in countT)) {
-            countT[t[i]] = 1;
-        } else {
-            countT[t[i]] = 1 + countT[t[i]];
-        }
-    }
+    // strict equality
     for (const count in countS) {
         if (countS[count] !== countT[count]) return false;
     }
     return true;
 };
 
-// const s = "anagram", t = "nagaram";
-// console.log(isAnagram(s,t));
-// const s1 = 'rat', t1 = 'car'
-// console.log(isAnagram(s1,t1));
+const s = "anagram",
+    t = "nagaram";
+console.log(isAnagram(s, t));
+const s1 = "rat",
+    t1 = "car";
+console.log(isAnagram(s1, t1));
