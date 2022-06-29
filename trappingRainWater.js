@@ -1,28 +1,30 @@
 // extra mem.
-// var trap = (height) => {
-//     // maxLeft iterate l -> r
-//     // maxRight iterate r -> l
-//     // then take the minimum of the two
-//     let out = 0;
-//     const maxLeft = [], maxRight = [];
-//     let maxL = 0, maxR = 0;
-//     maxLeft.push(maxL)
-//     maxRight.push(maxR)
-//     for (let i = 1, j = height.length - 2; i < height.length; i++, j--) {
-//         maxL = Math.max(maxL, height[i - 1])
-//         maxLeft.push(maxL);
-//         maxR = Math.max(maxR, height[j + 1])
-//         maxRight.unshift(maxR);
-//     }
+var trap = (height) => {
+    // maxLeft iterate l -> r
+    // maxRight iterate r -> l
+    // then take the minimum of the two
+    let out = 0;
+    const maxLeft = [],
+        maxRight = [];
+    let maxL = 0,
+        maxR = 0;
+    maxLeft.push(maxL);
+    maxRight.push(maxR);
+    for (let i = 1, j = height.length - 2; i < height.length; i++, j--) {
+        maxL = Math.max(maxL, height[i - 1]);
+        maxLeft.push(maxL);
+        maxR = Math.max(maxR, height[j + 1]);
+        maxRight.unshift(maxR);
+    }
 
-//     for (let i = 0; i < height.length; i++) {
-//         const trappedWater = Math.min(maxLeft[i], maxRight[i]) - height[i];
-//         if(trappedWater < 0) continue;
-//         out += trappedWater;
-//     }
+    for (let i = 0; i < height.length; i++) {
+        const trappedWater = Math.min(maxLeft[i], maxRight[i]) - height[i];
+        if (trappedWater < 0) continue;
+        out += trappedWater;
+    }
 
-//     return out;
-// }
+    return out;
+};
 
 /**
  * Property of NeetCode
