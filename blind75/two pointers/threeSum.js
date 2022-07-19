@@ -23,11 +23,11 @@ var threeSum = (nums) => {
     // outer incremental loop
     const out = [];
     nums = nums.sort((a, b) => a - b, 0); // nlog(n)
-    console.log(nums);
+    // console.log(nums);
     for (const [i, num] of Object.entries(nums)) {
         if (i > 0 && nums[i - 1] === num) continue;
         // console.log(i);
-        console.log(nums[i - 1]);
+        // console.log(nums[i - 1]);
         // console.log(num);
         let l = parseInt(i) + 1,
             r = nums.length - 1;
